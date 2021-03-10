@@ -1,6 +1,8 @@
 <div class="container">
-  <h2>Posteos</h2>
-  <div *ngIf="!existUserId">
+  
+    <h2 *ngIf="!existUserId">Posteos</h2>
+    <h2 *ngIf="existUserId">Posteos de </h2>
+    
     <mat-form-field appearance="fill">
       <mat-label>Filtrar por</mat-label>
       <mat-select [(ngModel)]="optionSelected">
@@ -9,23 +11,12 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
+    
     <mat-list>
       <mat-list-item *ngFor="let post of posts">
         <mat-icon matListIcon>article</mat-icon>
         <button mat-button (click)="openDialog(post.id)">{{post.title}}</button>
-        
         <mat-divider></mat-divider> 
       </mat-list-item>
     </mat-list>
-  </div>
-
-  <mat-list *ngIf="existUserId">
-    <mat-list-item *ngFor="let post of posts">
-      <mat-icon matListIcon>article</mat-icon>
-      <button mat-button (click)="openDialog(post.id)">{{post.name}}</button>
-      
-      <mat-divider></mat-divider> 
-    </mat-list-item>
-  </mat-list>
 </div>

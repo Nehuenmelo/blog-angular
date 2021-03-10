@@ -15,7 +15,7 @@ export class PostDialogComponent implements OnInit {
   public commentsState = 'Ver todos los comentarios';
 
   constructor(private _postsService:PostService) {
-    this.idDialog = this._postsService.sendIdDialog();
+    this.idDialog = this._postsService.getIdDialog();
     this._postsService.getOnePost(this.idDialog).subscribe((data) => {
       console.log(data);
       this.post = data;

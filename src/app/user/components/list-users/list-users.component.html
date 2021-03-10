@@ -3,7 +3,7 @@
   <mat-list>
     <mat-list-item *ngFor="let user of users">
       <mat-icon matListIcon>account_circle</mat-icon>
-      <a matLine href="#"> {{user.name}} </a>
+      <a matLine (click)="openDialog(user.id)"> {{user.name}} </a>
         <!-- <span> {{user.website}} </span>
         <span> {{user.company.name}} </span>
         <span> {{user.company.catchPhrase}} </span>

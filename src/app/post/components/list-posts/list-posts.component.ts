@@ -4,14 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { PostDialogComponent } from '../post-dialog/post-dialog.component';
 import { PostService } from '../../services/post.service';
+import { UserService } from '../../../user/services/user.service';
 
 interface Filter {
   value: string;
   viewValue: string;
 }
-
-  
-
 @Component({
   selector: 'app-list-posts',
   templateUrl: './list-posts.component.html',
@@ -30,6 +28,7 @@ export class ListPostsComponent implements OnInit {
 
   constructor(
     private _postsService: PostService,
+    private _userService: UserService,
     private route: ActivatedRoute,
     public dialog: MatDialog  
   ) { 
@@ -46,7 +45,7 @@ export class ListPostsComponent implements OnInit {
       });
     } else {
       this.existUserId = true;
-      this._postsService.getCommentsOfPost(this.idPost).subscribe( (data) => {
+      this._userService.getPostsOfOneUser(this.idPost).subscribe( (data) => {
         this.posts = data;
         console.log(this.posts);
       });
@@ -67,7 +66,7 @@ export class ListPostsComponent implements OnInit {
     if(this.optionSelected == 'title'){
       return this.posts.sort((a, b) => a.title.localeCompare(b.title));
     }
-    return this.posts.sort((a, b) => a.userId-b.userId);
+    return this.posts.sort((a, b) => a.id-b.id);
   }
 
 }

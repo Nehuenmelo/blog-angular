@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PostService {
-  public idDialog:number = 78;
+  public idDialog:number = 0;
 
   constructor(
     private httpclient: HttpClient
@@ -28,7 +28,7 @@ export class PostService {
     this.idDialog = id;
   }
 
-  sendIdDialog(){
+  getIdDialog(){
     return this.idDialog;
   }
 

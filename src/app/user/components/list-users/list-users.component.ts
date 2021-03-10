@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserDialogComponent } from '../user-dialog/user-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+
 import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-list-users',
@@ -8,13 +11,23 @@ import { UserService } from '../../services/user.service';
 export class ListUsersComponent implements OnInit {
   public users:Array<any> = [];
 
-  constructor(private _userService: UserService) {
-    
-  }
+  constructor(
+    private _userService: UserService,
+    public dialog: MatDialog 
+    ) { }
 
   ngOnInit(): void {
     this._userService.getUsers().subscribe( (data) => {
       this.users = data;
+    });
+  }
+
+  openDialog(id:any) {
+    this._userService.setIdDialog(id);
+    const dialogRef = this.dialog.open(UserDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 }

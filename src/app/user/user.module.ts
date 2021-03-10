@@ -7,20 +7,23 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { PostModule } from '../post/post.module';
 import { ListUsersComponent } from './components/list-users/list-users.component';
 import { UserService } from './services/user.service';
+import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 
 const material = [
   MatListModule,
   MatIconModule,
   MatButtonModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatDialogModule
 ]
 @NgModule({
   declarations: [ 
-    ListUsersComponent  
+    ListUsersComponent, UserDialogComponent  
   ],
   exports: [ 
     ListUsersComponent,
