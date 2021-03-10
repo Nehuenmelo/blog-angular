@@ -12,6 +12,10 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+const material = [
+  MatToolbarModule,
+  MatButtonModule,
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,8 +28,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserAnimationsModule,
     FlexLayoutModule,
     UserModule,
-    MatToolbarModule,
-    MatButtonModule,
+    material
   ],
   providers: [],
   bootstrap: [AppComponent]
