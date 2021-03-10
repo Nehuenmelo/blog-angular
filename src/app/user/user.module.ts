@@ -6,7 +6,9 @@ import { UserRoutingModule } from './user-module.routing';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
+import { PostModule } from '../post/post.module';
 import { ListUsersComponent } from './components/list-users/list-users.component';
 import { UserService } from './services/user.service';
 
@@ -14,6 +16,7 @@ const material = [
   MatListModule,
   MatIconModule,
   MatButtonModule,
+  MatButtonToggleModule
 ]
 @NgModule({
   declarations: [ 
@@ -27,7 +30,8 @@ const material = [
     CommonModule,
     material,
     HttpClientModule,
-    UserRoutingModule
+    UserRoutingModule,
+    PostModule
   ],
   providers: [
     UserService

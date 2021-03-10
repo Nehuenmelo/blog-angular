@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 import { PostDialogComponent } from '../post-dialog/post-dialog.component';
@@ -17,8 +18,9 @@ interface Filter {
   styleUrls: ['./list-posts.component.scss']
 })
 export class ListPostsComponent implements OnInit {
-  @Input() idPostsList: string = '0';
-
+  public idPost:number = 0;
+  public response:any;
+  public existUserId: boolean = false;
   public posts:Array<any> = [];
   filters: Filter[] = [
     {value: 'id', viewValue: 'ID de usuario'},
@@ -28,19 +30,26 @@ export class ListPostsComponent implements OnInit {
 
   constructor(
     private _postsService: PostService,
+    private route: ActivatedRoute,
     public dialog: MatDialog  
-  ) { }
+  ) { 
+    this.response = this.route.snapshot.paramMap.get('id');
+    console.log(this.response);
+    this.idPost = this.response;
+  }
 
   ngOnInit(): void {
-    if(this.idPostsList === '0'){
+    if(this.idPost === null){
+      this.existUserId = false;
       this._postsService.getPosts().subscribe( (data) => {
-        console.log(data);
-        alert("holas");
         this.posts = data;
       });
     } else {
-      alert("holas2");
-      this.posts = [];
+      this.existUserId = true;
+      this._postsService.getCommentsOfPost(this.idPost).subscribe( (data) => {
+        this.posts = data;
+        console.log(this.posts);
+      });
     }
     
   }

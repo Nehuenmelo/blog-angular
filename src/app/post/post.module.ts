@@ -14,7 +14,6 @@ import { PostRoutingModule } from './post-module.routing';
 import { ListPostsComponent } from './components/list-posts/list-posts.component';
 import { PostService } from './services/post.service';
 import { PostDialogComponent } from './components/post-dialog/post-dialog.component';
-import { PostsComponent } from './components/posts/posts.component';
 
 const material = [
   MatListModule,
@@ -28,8 +27,7 @@ const material = [
 @NgModule({
   declarations: [
     ListPostsComponent,
-    PostDialogComponent,
-    PostsComponent
+    PostDialogComponent
   ],
   exports: [ 
     ListPostsComponent,

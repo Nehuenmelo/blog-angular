@@ -1,18 +1,20 @@
-<mat-list>
-  <mat-list-item *ngFor="let user of users">
-    <mat-icon matListIcon>account_circle</mat-icon>
-    <h3 matLine> {{user.name}} </h3>
-    <p matLine>
-      <span> {{user.website}} </span>
-      <span> {{user.company.name}} </span>
-      <span> {{user.company.catchPhrase}} </span>
-      <span> {{user.company.bs}} </span>
-      <div>
-        <button mat-flat-button color="primary" [routerLink]="['/users', user.id, 'posts']">Posteos</button>
-        <button mat-flat-button color="accent" [routerLink]="['/users', user.id, 'albums']">Álbumes</button>
-        <button mat-flat-button color="warn" [routerLink]="['/users', user.id, 'todos']">TODOs</button>
-      </div>
-    
-    <mat-divider></mat-divider> 
-  </mat-list-item>
-</mat-list>
+<div class="container">
+  <h1>Usuarios</h1>
+  <mat-list>
+    <mat-list-item *ngFor="let user of users">
+      <mat-icon matListIcon>account_circle</mat-icon>
+      <a matLine href="#"> {{user.name}} </a>
+        <!-- <span> {{user.website}} </span>
+        <span> {{user.company.name}} </span>
+        <span> {{user.company.catchPhrase}} </span>
+        <span> {{user.company.bs}} </span> -->
+      <mat-button-toggle-group>
+        <mat-button-toggle [routerLink]="['/users', user.id, 'posts']">Posteos</mat-button-toggle>
+        <mat-button-toggle [routerLink]="['/users', user.id, 'albums']">Álbumes</mat-button-toggle>
+        <mat-button-toggle [routerLink]="['/users', user.id, 'todos']">TODOs</mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-divider></mat-divider>
+         
+    </mat-list-item>
+  </mat-list>
+</div>
