@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
 import { UserService } from '../../services/user.service';
-/* import { User } from '../../classes/user'; */
 @Component({
   selector: 'app-list-users',
   templateUrl: './list-users.component.html',
@@ -10,15 +8,13 @@ import { UserService } from '../../services/user.service';
 export class ListUsersComponent implements OnInit {
   public users:Array<any> = [];
 
-  constructor(private _service: UserService) {
+  constructor(private _userService: UserService) {
     
   }
 
   ngOnInit(): void {
-    this._service.getUsers().subscribe( (data) => {
-      console.log(data);
+    this._userService.getUsers().subscribe( (data) => {
       this.users = data;
     });
   }
-
 }

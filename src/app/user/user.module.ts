@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { UserRoutingModule } from './user-routing.module';
+import { UserRoutingModule } from './user-module.routing';
 
 import { MatListModule } from '@angular/material/list';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
-import { UserService } from './services/user.service';
-
 import { ListUsersComponent } from './components/list-users/list-users.component';
-
+import { UserService } from './services/user.service';
 
 const material = [
   MatListModule,

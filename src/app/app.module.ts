@@ -7,9 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 
-import { UserModule } from './user/user.module';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { UserModule } from './user/user.module';
+import { PostModule } from './post/post.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 const material = [
@@ -28,6 +29,7 @@ const material = [
     BrowserAnimationsModule,
     FlexLayoutModule,
     UserModule,
+    PostModule,
     material
   ],
   providers: [],
