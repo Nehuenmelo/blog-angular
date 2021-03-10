@@ -20,6 +20,10 @@ export class PostService {
     return this.httpclient.get<any[]>(`https://jsonplaceholder.typicode.com/posts/${id}`);
   }
 
+  getCommentsOfPost(id:number){
+    return this.httpclient.get<any[]>(`https://jsonplaceholder.typicode.com/posts/${id}/comments`);
+  }
+
   setIdDialog(id:number){
     this.idDialog = id;
   }

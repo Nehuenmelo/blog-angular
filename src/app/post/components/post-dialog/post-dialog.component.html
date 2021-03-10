@@ -3,8 +3,18 @@
   <h3>User ID: {{post.userId}}</h3>
   
   <p>{{post.body}}</p>
+  <div class="comments" *ngIf="showComments">
+    <h2>Comentarios</h2>
+    <mat-card *ngFor="let comment of postComments">
+      <h2>{{comment.name}}</h2>
+      <h3>{{comment.email}}</h3>
+      <p>{{comment.body}}</p>
+    </mat-card>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+  <button mat-button mat-dialog-close>Detalle Usuario</button>
+  <button mat-button cdkFocusInitial (click)="clickCommentsEvent()">{{commentsState}}</button>
 </mat-dialog-actions>
+
+

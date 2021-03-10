@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { PostDialogComponent } from '../post-dialog/post-dialog.component';
@@ -8,15 +8,19 @@ interface Filter {
   value: string;
   viewValue: string;
 }
+
+  
+
 @Component({
   selector: 'app-list-posts',
   templateUrl: './list-posts.component.html',
   styleUrls: ['./list-posts.component.scss']
 })
 export class ListPostsComponent implements OnInit {
+  @Input() idPostsList: string = '0';
 
   public posts:Array<any> = [];
-  filters: any[] = [
+  filters: Filter[] = [
     {value: 'id', viewValue: 'ID de usuario'},
     {value: 'title', viewValue: 'Titulo'}
   ];
@@ -28,10 +32,17 @@ export class ListPostsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._postsService.getPosts().subscribe( (data) => {
-      console.log(data);
-      this.posts = data;
-    });
+    if(this.idPostsList === '0'){
+      this._postsService.getPosts().subscribe( (data) => {
+        console.log(data);
+        alert("holas");
+        this.posts = data;
+      });
+    } else {
+      alert("holas2");
+      this.posts = [];
+    }
+    
   }
 
   openDialog(id:any) {
