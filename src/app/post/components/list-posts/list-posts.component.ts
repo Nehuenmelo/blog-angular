@@ -17,7 +17,7 @@ export class ListPostsComponent implements OnInit {
 
   public posts:Array<any> = [];
   filters: any[] = [
-    {value: 'id', viewValue: 'ID'},
+    {value: 'id', viewValue: 'ID de usuario'},
     {value: 'title', viewValue: 'Titulo'}
   ];
   public optionSelected: string = '';
@@ -47,7 +47,7 @@ export class ListPostsComponent implements OnInit {
     if(this.optionSelected == 'title'){
       return this.posts.sort((a, b) => a.title.localeCompare(b.title));
     }
-    return this.posts.sort((a, b) => a.id-b.id);
+    return this.posts.sort((a, b) => a.userId-b.userId);
   }
 
 }
