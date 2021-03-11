@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PostService } from '../../services/post.service';
+import { UserService } from '../../../user/services/user.service';
+import { User } from 'src/app/user/models/user.models';
 
 @Component({
   selector: 'app-post-dialog',
@@ -13,8 +15,14 @@ export class PostDialogComponent implements OnInit {
   public postComments: any;
   public showComments: boolean = false;
   public commentsState = 'Ver todos los comentarios';
+  public user!:User;
+  public showUser: boolean = false;
+  public userState = 'Detalle usuario';
 
-  constructor(private _postsService:PostService) {
+  constructor(
+    private _postsService:PostService,
+    private _userService:UserService
+  ) {
     this.idDialog = this._postsService.getIdDialog();
     this._postsService.getOnePost(this.idDialog).subscribe((data) => {
       console.log(data);
@@ -32,6 +40,8 @@ export class PostDialogComponent implements OnInit {
       this.commentsState = 'Ver todos los comentarios';
       this.showComments = false;
     } else {
+      this.userState = 'Detalle usuario';
+      this.showUser = false;
       this.commentsState = 'Ocultar comentarios';
       this.showComments = true;
     }
@@ -40,7 +50,25 @@ export class PostDialogComponent implements OnInit {
   getCommentsOfOnePost(){
     this._postsService.getCommentsOfPost(this.idDialog).subscribe((data) => {
       this.postComments = data;
-      console.log(this.postComments);
+    });
+  }
+
+  clickUserEvent(){
+    this.getUser();
+    if(this.showUser == true){
+      this.userState = 'Detalle usuario';
+      this.showUser = false;
+    } else {
+      this.commentsState = 'Ver todos los comentarios';
+      this.showComments = false;
+      this.userState = 'Ocultar detalle';
+      this.showUser = true;
+    }
+  }
+
+  getUser(){
+    this._userService.getUser(this.post.userId).subscribe((data) => {
+      this.user = data;
     });
   }
 

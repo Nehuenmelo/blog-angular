@@ -12,8 +12,18 @@
     </mat-card>
   </div>
 </mat-dialog-content>
+<div class="comments" *ngIf="showUser">
+  <h2>Usuario</h2>
+  <mat-card>
+    <h1>{{user.name}}</h1>
+    <h2>Sitio web: {{user?.website}}</h2>
+      <h2>Empresa: {{user?.company?.name}}</h2>
+      <h2>{{user?.company?.catchPhrase}}</h2>
+      <h2>{{user?.company?.bs}}</h2>
+  </mat-card>
+</div>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Detalle Usuario</button>
+  <button mat-button (click)="clickUserEvent()">{{userState}}</button>
   <button mat-button cdkFocusInitial (click)="clickCommentsEvent()">{{commentsState}}</button>
 </mat-dialog-actions>
 
