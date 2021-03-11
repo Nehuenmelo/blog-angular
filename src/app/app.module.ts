@@ -11,6 +11,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
+import { AlbumModule } from './album/album.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 const material = [
@@ -21,7 +22,7 @@ const material = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +31,7 @@ const material = [
     FlexLayoutModule,
     UserModule,
     PostModule,
+    AlbumModule,
     material
   ],
   providers: [],

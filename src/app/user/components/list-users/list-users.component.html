@@ -4,10 +4,6 @@
     <mat-list-item *ngFor="let user of users">
       <mat-icon matListIcon>account_circle</mat-icon>
       <a matLine (click)="openDialog(user.id)"> {{user.name}} </a>
-        <!-- <span> {{user.website}} </span>
-        <span> {{user.company.name}} </span>
-        <span> {{user.company.catchPhrase}} </span>
-        <span> {{user.company.bs}} </span> -->
       <mat-button-toggle-group>
         <mat-button-toggle [routerLink]="['/users', user.id, 'posts']">Posteos</mat-button-toggle>
         <mat-button-toggle [routerLink]="['/users', user.id, 'albums']">Álbumes</mat-button-toggle>

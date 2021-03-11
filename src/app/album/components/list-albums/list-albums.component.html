@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Álbumes</h1>
+  <mat-list>
+    <mat-list-item *ngFor="let album of albums">
+      <mat-icon matListIcon>perm_media</mat-icon>
+      <a matLine (click)="openDialog(album.id)"> {{album.title}} </a>
+      <mat-divider></mat-divider>
+         
+    </mat-list-item>
+  </mat-list>
+</div>

@@ -1,0 +1,12 @@
+<div class="container">
+  <a mat-raised-button [routerLink]="['/albums']">Volver</a>
+  <h1>Galería</h1>
+  <ul class="mdc-image-list my-image-list">
+    <li class="mdc-image-list__item" *ngFor="let photo of photos">
+      <img class="mdc-image-list__image" src={{photo.url}}>
+      <div class="mdc-image-list__supporting">
+        <span class="mdc-image-list__label"><h2>{{photo.title}}</h2></span>
+      </div>
+    </li>
+  </ul>
+</div>
