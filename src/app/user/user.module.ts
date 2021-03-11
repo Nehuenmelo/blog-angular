@@ -23,7 +23,8 @@ const material = [
 ]
 @NgModule({
   declarations: [ 
-    ListUsersComponent, UserDialogComponent  
+    ListUsersComponent, 
+    UserDialogComponent  
   ],
   exports: [ 
     ListUsersComponent,
