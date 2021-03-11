@@ -1,8 +1,25 @@
-@use "@material/image-list/mdc-image-list";
+.img {
+  width: 100%;
+  margin-bottom: 18%;
+  vertical-align: bottom !important;
+}
+.card-picture {
+  width: 23%;
+  margin-bottom: 2%;
+}
+.search-form {
+  width: 90%;
+}
+
 a {
   margin-bottom: 25px;
 }
+
+button {
+  float: right;
+}
 .container {
+  max-width: 1000px !important;
   margin-top: 20px;
   margin-bottom: 20px;
   padding-right: 15px;

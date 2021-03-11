@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
 import { Photo } from '../../models/photo.models';
 import { AlbumService } from '../../services/album.service';
+import { PhotoDialogComponent } from '../photo-dialog/photo-dialog.component';
 
 @Component({
   selector: 'app-list-photos',
@@ -9,9 +12,15 @@ import { AlbumService } from '../../services/album.service';
 })
 export class ListPhotosComponent implements OnInit {
   public idDialog: number = 0;
+  public photoIdDialog: number = 0;
   public photos: Photo[] = [];
+  public info: Photo[] = [];
+  public photoToDelete!: Photo;
 
-  constructor(private _albumService: AlbumService) {
+  constructor(
+    private _albumService: AlbumService,
+    public dialog: MatDialog,
+    ) {
     this.idDialog = this._albumService.getIdDialog();
     this._albumService.getPhotosOfAlbum(this.idDialog).subscribe((data:Photo[]) => {
       this.photos = data;
@@ -19,6 +28,23 @@ export class ListPhotosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  openDialog(photo:Photo) {
+    this._albumService.setIdDialog(photo.albumId);
+    this._albumService.setPhotoIdDialog(photo.id);
+    const dialogRef = this.dialog.open(PhotoDialogComponent);
+  }
+
+  deletePhoto(photo:Photo) {
+    this._albumService.getPhotosOfAlbum(photo.albumId).subscribe((data:Photo[]) => {
+      this.photos = data;
+      this.info = this.photos.filter(item => item.id == photo.id);
+      this.photoToDelete = this.info[0];
+      console.log(this.photoToDelete.id);
+      this._albumService.deletePhoto(photo);
+    });
+
   }
 
 }
