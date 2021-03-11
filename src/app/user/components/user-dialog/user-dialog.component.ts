@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../models/user.models';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -8,12 +9,11 @@ import { UserService } from '../../services/user.service';
 })
 export class UserDialogComponent implements OnInit {
   public idDialog: number = 0;
-  public user: any;
-  
+  public user!: User;
+
   constructor(private _userService: UserService) { 
     this.idDialog = this._userService.getIdDialog();
-    this._userService.getUser(this.idDialog).subscribe((data) => {
-      console.log(data);
+    this._userService.getUser(this.idDialog).subscribe((data:User) => {
       this.user = data;
     });
   }

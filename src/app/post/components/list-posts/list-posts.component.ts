@@ -19,6 +19,7 @@ export class ListPostsComponent implements OnInit {
   public idPost:number = 0;
   public response:any;
   public existUserId: boolean = false;
+  public user: any;
   public posts:Array<any> = [];
   filters: Filter[] = [
     {value: 'id', viewValue: 'ID de usuario'},
@@ -47,7 +48,9 @@ export class ListPostsComponent implements OnInit {
       this.existUserId = true;
       this._userService.getPostsOfOneUser(this.idPost).subscribe( (data) => {
         this.posts = data;
-        console.log(this.posts);
+      });
+      this._userService.getUser(this.idPost).subscribe( (data) => {
+        this.user = data;
       });
     }
     

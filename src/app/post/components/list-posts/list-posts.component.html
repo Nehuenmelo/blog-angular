@@ -1,7 +1,7 @@
 <div class="container">
   
     <h2 *ngIf="!existUserId">Posteos</h2>
-    <h2 *ngIf="existUserId">Posteos de </h2>
+    <h2 *ngIf="existUserId">Posteos de {{user.name}}</h2>
     
     <mat-form-field appearance="fill">
       <mat-label>Filtrar por</mat-label>
