@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -21,11 +21,11 @@ export class ListPostsComponent implements OnInit {
   public existUserId: boolean = false;
   public user: any;
   public posts:Array<any> = [];
+  public optionSelected: string = '';
   filters: Filter[] = [
     {value: 'id', viewValue: 'ID de usuario'},
     {value: 'title', viewValue: 'Titulo'}
   ];
-  public optionSelected: string = '';
 
   constructor(
     private _postsService: PostService,

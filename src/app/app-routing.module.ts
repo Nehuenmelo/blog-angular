@@ -4,6 +4,7 @@ import { ListUsersComponent } from './user/components/list-users/list-users.comp
 import { ListPostsComponent } from './post/components/list-posts/list-posts.component';
 import { ListAlbumsComponent } from './album/components/list-albums/list-albums.component';
 import { ListPhotosComponent } from './album/components/list-photos/list-photos.component';
+import { ListTodosComponent } from './todo/components/list-todos/list-todos.component';
 
 const routes: Routes = [
   { path: 'users/:id/posts', component: ListPostsComponent },
@@ -11,7 +12,7 @@ const routes: Routes = [
   { path: 'users', component: ListUsersComponent },
   { path: 'posts', component: ListPostsComponent },
   { path: 'albums', component: ListAlbumsComponent },
-  { path: 'todos', component: ListUsersComponent },
+  { path: 'todos', component: ListTodosComponent },
   { path: '**', component: ListUsersComponent },
 ];
 

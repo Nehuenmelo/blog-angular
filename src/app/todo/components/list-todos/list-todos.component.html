@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>TODOs</h1>
+  <mat-form-field appearance="fill">
+    <mat-label>Filtrar por</mat-label>
+    <mat-select [(ngModel)]="optionSelected">
+      <mat-option *ngFor="let filter of filters" [value]="filter.value" (click)="changeFilter()">
+        {{filter.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-selection-list #todo [(ngModel)]="selectedOptions">
+    <mat-list-option *ngFor="let todo of todos" [value]="todo">
+      {{todo.title}}
+    </mat-list-option>
+  </mat-selection-list>
+</div>

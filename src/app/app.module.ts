@@ -13,6 +13,7 @@ import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
 import { AlbumModule } from './album/album.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TodoModule } from './todo/todo.module';
 
 const material = [
   MatToolbarModule,
@@ -32,6 +33,7 @@ const material = [
     UserModule,
     PostModule,
     AlbumModule,
+    TodoModule,
     material
   ],
   providers: [],

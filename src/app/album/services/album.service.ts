@@ -41,10 +41,6 @@ export class AlbumService {
   }
 
   deletePhoto(photo:Photo){
-    fetch(`https://jsonplaceholder.typicode.com/album/${photo.albumId}/photos`, {
-      // no hay forma de acceder por url a una unica foto
-      // https://jsonplaceholder.typicode.com/albums/2/photos/1  devuelve vacio
-      method: 'DELETE',
-    });
+    return this.httpclient.delete<Photo>(`https://jsonplaceholder.typicode.com/photos/${photo.id}`);
   }
 }

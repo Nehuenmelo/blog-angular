@@ -37,12 +37,8 @@ export class ListPhotosComponent implements OnInit {
   }
 
   deletePhoto(photo:Photo) {
-    this._albumService.getPhotosOfAlbum(photo.albumId).subscribe((data:Photo[]) => {
-      this.photos = data;
-      this.info = this.photos.filter(item => item.id == photo.id);
-      this.photoToDelete = this.info[0];
-      console.log(this.photoToDelete.id);
-      this._albumService.deletePhoto(photo);
+    this._albumService.deletePhoto(photo).subscribe((data:Photo) => {
+      this.photos = this.photos.filter(item => item.id != photo.id);
     });
 
   }
