@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { User } from 'src/app/user/models/user.models';
 import { UserService } from 'src/app/user/services/user.service';
 import { Album } from '../../models/album.models';
@@ -10,7 +11,6 @@ import { AlbumService } from '../../services/album.service';
   styleUrls: ['./album-dialog.component.scss']
 })
 export class AlbumDialogComponent implements OnInit {
-  public idDialog: number = 0;
   public album!: Album;
   public showUser: boolean = false;
   public userState: string = 'Detalle usuario';
@@ -18,10 +18,10 @@ export class AlbumDialogComponent implements OnInit {
 
   constructor(
     private _albumService: AlbumService,
-    private _userService: UserService
+    private _userService: UserService,
+    @Inject(MAT_DIALOG_DATA) public data: {idAlbum: number}
   ) { 
-    this.idDialog = this._albumService.getIdDialog();
-    this._albumService.getAlbum(this.idDialog).subscribe((data:Album) => {
+    this._albumService.getAlbum(data.idAlbum).subscribe((data:Album) => {
       this.album = data;
     });
   }

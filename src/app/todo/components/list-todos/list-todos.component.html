@@ -1,6 +1,6 @@
 <div class="container">
   <h1 *ngIf="!existUserId">TODOs</h1>
-  <h1 *ngIf="existUserId">TODOs de {{user.name}}</h1>
+  <h1 *ngIf="existUserId">TODOs de {{user?.name}}</h1>
   <mat-form-field appearance="fill">
     <mat-label>Filtrar por</mat-label>
     <mat-select [(ngModel)]="optionSelected">
@@ -15,7 +15,6 @@
       *ngFor="let todo of todos" 
       [value]="todo" 
       (click)="setTodoBooleanOffline(todo)"
-      (deselected)="setTodoBooleanOffline(todo)"
     >
       <mat-icon matListIcon>push_pin</mat-icon>
       <a matLine (click)="openDialog($event, todo)">{{todo.title}}</a>

@@ -54,7 +54,7 @@ export class ListAlbumsComponent implements OnInit {
 
   openDialog(id:any) {
     this._albumService.setIdDialog(id);
-    const dialogRef = this.dialog.open(AlbumDialogComponent);
+    const dialogRef = this.dialog.open(AlbumDialogComponent, {data:{idAlbum:id}});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

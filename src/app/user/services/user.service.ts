@@ -26,7 +26,7 @@ export class UserService {
     }
 
     getAlbumsOfOneUser(id:number) {
-      return this.httpclient.get<Album[]>(`https://jsonplaceholder.typicode.com/users/${id}/posts`);
+      return this.httpclient.get<Album[]>(`https://jsonplaceholder.typicode.com/users/${id}/albums`);
     }
 
     getTodosOfOneUser(id:number) {

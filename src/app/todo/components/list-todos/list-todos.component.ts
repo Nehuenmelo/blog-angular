@@ -40,7 +40,7 @@ export class ListTodosComponent implements OnInit {
     console.log(this.response);
     this.idUser = this.response;
   }
-
+  
   ngOnInit(): void {
     this.listAllOrUserTodos();
   }
@@ -67,7 +67,7 @@ export class ListTodosComponent implements OnInit {
   }
 
   changeFilter(){
-    this.todos = this._todoService.getTodosArrayOffline();
+    /* this.todos = this._todoService.getTodosArrayOffline(); */
     if(this.optionSelected == 'vof'){
       this.selectedOptions = this.todos.filter(item=>item.completed);
       this.todos = this.todos.sort(function(x, y) {
@@ -96,8 +96,9 @@ export class ListTodosComponent implements OnInit {
   }
 
   setTodoBooleanOffline(todo:Todo){
-    todo.completed == true ? this.todos[todo.id-1].completed = false : this.todos[todo.id-1].completed = true;
+    todo.completed = !todo.completed;
     this._todoService.setTodosArrayOffline(this.todos);
+    this.todos = this._todoService.getTodosArrayOffline();
     console.log('change', this.todos[todo.id-1].completed);
   }
 
