@@ -6,7 +6,7 @@ import { Todo } from '../models/todo.models';
   providedIn: 'root'
 })
 export class TodoService {
-  public idDialog: number = 0;
+  public todoDialog!: Todo;
   public todos: Todo[] = [];
   constructor(private httpclient: HttpClient) { }
 
@@ -18,12 +18,12 @@ export class TodoService {
     return this.httpclient.get<Todo>(`https://jsonplaceholder.typicode.com/todos/${id}`);
   }
 
-  setIdDialog(id:number){
-    this.idDialog = id;
+  setTodoDialog(todo:Todo){
+    this.todoDialog = todo;
   }
 
-  getIdDialog(){
-    return this.idDialog;
+  getTodoDialog(){
+    return this.todoDialog;
   }
 
   setTodosArrayOffline(todos:Todo[]){
@@ -32,5 +32,9 @@ export class TodoService {
 
   getTodosArrayOffline(){
     return this.todos;
+  }
+
+  getTodoArrayOffline(id: number){
+    return this.todos[id-1];
   }
 }

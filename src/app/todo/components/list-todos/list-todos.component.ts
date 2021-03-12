@@ -77,23 +77,17 @@ export class ListTodosComponent implements OnInit {
         y.completed == true ? b = 1 : b = 0;
         return b-a;
       });
-      /* for(let i = 0; i <= this.todos.length; i++){
-        this.todos[i].id = i;
-      } */
       console.log(this.todos);
       return this._todoService.setTodosArrayOffline(this.todos);
     }
     this.todos = this.todos.sort((a, b) => a.userId-b.userId);
-    /* for(let i = 0; i <= this.todos.length; i++){
-      this.todos[i].id = i;
-    } */
     console.log(this.todos);
     return this._todoService.setTodosArrayOffline(this.todos);
   }
 
-  openDialog(event:MouseEvent, id:number) {
+  openDialog(event:MouseEvent, todo:Todo) {
     event.stopPropagation();
-    this._todoService.setIdDialog(id);
+    this._todoService.setTodoDialog(todo);
     const dialogRef = this.dialog.open(TodoDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {

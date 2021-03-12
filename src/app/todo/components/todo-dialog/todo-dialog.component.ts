@@ -8,18 +8,14 @@ import { TodoService } from '../../services/todo.service';
   styleUrls: ['./todo-dialog.component.scss']
 })
 export class TodoDialogComponent implements OnInit {
-  public idDialog: number = 0;
+  public idDialog!: Todo;
   public todo!: Todo;
-  public todos: Todo[];
 
   constructor(private _todoService: TodoService) { 
-    this.idDialog = this._todoService.getIdDialog();
+    this.idDialog = this._todoService.getTodoDialog();
+    let info = this._todoService.getTodosArrayOffline();
     console.log(this.idDialog);
-    this.todos = this._todoService.getTodosArrayOffline();
-    this.todo = this.todos[this.idDialog-1];
-    console.log(this.todo.id);
-    console.log(this.todos);
-
+    this.todo = info[this.idDialog.id-1];
   }
 
   ngOnInit(): void {

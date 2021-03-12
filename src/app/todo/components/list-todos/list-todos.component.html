@@ -18,7 +18,7 @@
       (deselected)="setTodoBooleanOffline(todo)"
     >
       <mat-icon matListIcon>push_pin</mat-icon>
-      <a matLine (click)="openDialog($event, todo.id)">{{todo.title}}</a>
+      <a matLine (click)="openDialog($event, todo)">{{todo.title}}</a>
     </mat-list-option>
   </mat-selection-list>
 </div>
