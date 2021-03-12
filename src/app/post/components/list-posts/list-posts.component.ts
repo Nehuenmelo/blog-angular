@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { PostDialogComponent } from '../post-dialog/post-dialog.component';
 import { PostService } from '../../services/post.service';
 import { UserService } from '../../../user/services/user.service';
+import { User } from 'src/app/user/models/user.models';
+import { Post } from '../../models/post.models';
 
 interface Filter {
   value: string;
@@ -19,8 +21,8 @@ export class ListPostsComponent implements OnInit {
   public idPost:number = 0;
   public response:any;
   public existUserId: boolean = false;
-  public user: any;
-  public posts:Array<any> = [];
+  public user!: User;
+  public posts:Post[] = [];
   public optionSelected: string = '';
   filters: Filter[] = [
     {value: 'id', viewValue: 'ID de usuario'},
@@ -56,7 +58,7 @@ export class ListPostsComponent implements OnInit {
     
   }
 
-  openDialog(id:any) {
+  openDialog(id:number) {
     this._postsService.setIdDialog(id);
     const dialogRef = this.dialog.open(PostDialogComponent);
 

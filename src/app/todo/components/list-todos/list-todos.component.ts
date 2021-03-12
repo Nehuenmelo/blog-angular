@@ -1,7 +1,9 @@
-import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 
+import { User } from 'src/app/user/models/user.models';
+import { UserService } from 'src/app/user/services/user.service';
 import { Todo } from '../../models/todo.models';
 import { TodoService } from '../../services/todo.service';
 import { TodoDialogComponent } from '../todo-dialog/todo-dialog.component';
@@ -16,6 +18,10 @@ interface Filter {
   styleUrls: ['./list-todos.component.scss']
 })
 export class ListTodosComponent implements OnInit {
+  public idUser: number = 0;
+  public existUserId: boolean = false;
+  public response:any;
+  public user!: User;
   public todos: Todo[] = [];
   public optionSelected: string = '';
   public selectedOptions: Todo[] = [];
@@ -26,16 +32,38 @@ export class ListTodosComponent implements OnInit {
 
   constructor(
     private _todoService: TodoService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _userService: UserService,
+    private route: ActivatedRoute,
   ) {
-    this._todoService.getTodos().subscribe((data:Todo[]) => {
-      this._todoService.setTodosArrayOffline(data);
-      this.todos = this._todoService.getTodosArrayOffline();
-      this.selectedOptions = this.todos.filter(item=>item.completed);
-    });
+    this.response = this.route.snapshot.paramMap.get('id');
+    console.log(this.response);
+    this.idUser = this.response;
   }
 
   ngOnInit(): void {
+    this.listAllOrUserTodos();
+  }
+
+  listAllOrUserTodos(){
+    if(this.idUser === null){
+      this.existUserId = false;
+      this._todoService.getTodos().subscribe((data:Todo[]) => {
+        this._todoService.setTodosArrayOffline(data);
+        this.todos = this._todoService.getTodosArrayOffline();
+        this.selectedOptions = this.todos.filter(item=>item.completed);
+      });
+    } else {
+      this.existUserId = true;
+      this._userService.getTodosOfOneUser(this.idUser).subscribe( (data) => {
+        this._todoService.setTodosArrayOffline(data);
+        this.todos = this._todoService.getTodosArrayOffline();
+        this.selectedOptions = this.todos.filter(item=>item.completed);
+      });
+      this._userService.getUser(this.idUser).subscribe( (data) => {
+        this.user = data;
+      });
+    }
   }
 
   changeFilter(){

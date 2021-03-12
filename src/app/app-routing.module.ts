@@ -8,6 +8,8 @@ import { ListTodosComponent } from './todo/components/list-todos/list-todos.comp
 
 const routes: Routes = [
   { path: 'users/:id/posts', component: ListPostsComponent },
+  { path: 'users/:id/albums', component: ListAlbumsComponent },
+  { path: 'users/:id/todos', component: ListTodosComponent },
   { path: 'albums/:id/photos', component: ListPhotosComponent },
   { path: 'users', component: ListUsersComponent },
   { path: 'posts', component: ListPostsComponent },
