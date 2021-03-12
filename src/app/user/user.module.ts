@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 
 import { PostModule } from '../post/post.module';
 import { ListUsersComponent } from './components/list-users/list-users.component';
@@ -19,7 +20,8 @@ const material = [
   MatIconModule,
   MatButtonModule,
   MatButtonToggleModule,
-  MatDialogModule
+  MatDialogModule,
+  MatCardModule
 ]
 @NgModule({
   declarations: [ 

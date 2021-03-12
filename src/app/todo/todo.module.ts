@@ -9,10 +9,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 
 import { TodoRoutingModule } from './todo-routing.module';
 import { ListTodosComponent } from './components/list-todos/list-todos.component';
 import { TodoService } from './services/todo.service';
+import { TodoDialogComponent } from './components/todo-dialog/todo-dialog.component';
 
 const material = [
   MatListModule,
@@ -20,10 +22,11 @@ const material = [
   MatButtonModule,
   MatButtonToggleModule,
   MatDialogModule,
-  MatSelectModule
+  MatSelectModule,
+  MatCardModule
 ]
 @NgModule({
-  declarations: [ListTodosComponent],
+  declarations: [ListTodosComponent, TodoDialogComponent],
   exports: [
     ListTodosComponent,
     material

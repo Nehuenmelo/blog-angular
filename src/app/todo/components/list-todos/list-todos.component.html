@@ -10,8 +10,14 @@
   </mat-form-field>
 
   <mat-selection-list #todo [(ngModel)]="selectedOptions">
-    <mat-list-option *ngFor="let todo of todos" [value]="todo">
-      {{todo.title}}
+    <mat-list-option 
+      *ngFor="let todo of todos" 
+      [value]="todo" 
+      (click)="setTodoBooleanOffline(todo)"
+      (deselected)="setTodoBooleanOffline(todo)"
+    >
+      <mat-icon matListIcon>push_pin</mat-icon>
+      <a matLine (click)="openDialog($event, todo.id)">{{todo.title}}</a>
     </mat-list-option>
   </mat-selection-list>
 </div>

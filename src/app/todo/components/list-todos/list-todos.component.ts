@@ -1,6 +1,10 @@
+import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
 import { Todo } from '../../models/todo.models';
 import { TodoService } from '../../services/todo.service';
+import { TodoDialogComponent } from '../todo-dialog/todo-dialog.component';
 
 interface Filter {
   value: string;
@@ -20,18 +24,22 @@ export class ListTodosComponent implements OnInit {
     {value: 'userId', viewValue: 'ID de Usuario'}
   ];
 
-  constructor(private _todoService: TodoService) {
+  constructor(
+    private _todoService: TodoService,
+    public dialog: MatDialog
+  ) {
     this._todoService.getTodos().subscribe((data:Todo[]) => {
-      this.todos = data;
+      this._todoService.setTodosArrayOffline(data);
+      this.todos = this._todoService.getTodosArrayOffline();
       this.selectedOptions = this.todos.filter(item=>item.completed);
     });
-    console.log(this.selectedOptions);
   }
 
   ngOnInit(): void {
   }
 
   changeFilter(){
+    this.todos = this._todoService.getTodosArrayOffline();
     if(this.optionSelected == 'vof'){
       this.selectedOptions = this.todos.filter(item=>item.completed);
       this.todos = this.todos.sort(function(x, y) {
@@ -40,10 +48,35 @@ export class ListTodosComponent implements OnInit {
         x.completed == true ? a = 1 : a = 0;
         y.completed == true ? b = 1 : b = 0;
         return b-a;
-     });
-      return this.todos;
+      });
+      /* for(let i = 0; i <= this.todos.length; i++){
+        this.todos[i].id = i;
+      } */
+      console.log(this.todos);
+      return this._todoService.setTodosArrayOffline(this.todos);
     }
-    return this.todos.sort((a, b) => a.userId-b.userId);
+    this.todos = this.todos.sort((a, b) => a.userId-b.userId);
+    /* for(let i = 0; i <= this.todos.length; i++){
+      this.todos[i].id = i;
+    } */
+    console.log(this.todos);
+    return this._todoService.setTodosArrayOffline(this.todos);
+  }
+
+  openDialog(event:MouseEvent, id:number) {
+    event.stopPropagation();
+    this._todoService.setIdDialog(id);
+    const dialogRef = this.dialog.open(TodoDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  setTodoBooleanOffline(todo:Todo){
+    todo.completed == true ? this.todos[todo.id-1].completed = false : this.todos[todo.id-1].completed = true;
+    this._todoService.setTodosArrayOffline(this.todos);
+    console.log('change', this.todos[todo.id-1].completed);
   }
 
 }
