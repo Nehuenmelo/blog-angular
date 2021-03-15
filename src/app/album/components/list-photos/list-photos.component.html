@@ -9,21 +9,11 @@
           <h3>{{photo.title}}</h3>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-fab color="warn">
-            <mat-icon (click)="deletePhoto(photo)">delete</mat-icon>
+          <button mat-fab color="warn" (click)="deletePhoto(photo)">
+            <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
-  <!-- <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <mat-card class="card-picture" *ngFor="let photo of photos">
-      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
-        <span fxFlex="80%">{{photo.title}}</span>
-        <mat-icon fxFlex="10%">mode_edit</mat-icon>
-        <mat-icon fxFlex="10%">delete</mat-icon>
-      </mat-card-title>
-      <img mat-card-image [src]="photo.url">
-    </mat-card>
-  </div> -->
 </div>

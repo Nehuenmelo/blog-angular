@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 import { Photo } from '../../models/photo.models';
 import { AlbumService } from '../../services/album.service';
@@ -37,10 +38,22 @@ export class ListPhotosComponent implements OnInit {
   }
 
   deletePhoto(photo:Photo) {
-    this._albumService.deletePhoto(photo).subscribe((data:Photo) => {
-      this.photos = this.photos.filter(item => item.id != photo.id);
-    });
-
+    Swal.fire({
+      title: 'Estás seguro?',
+      text: 'No se podrán revertir los cambios!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar'
+    }).then(result => {
+      if(result.value){
+        this._albumService.deletePhoto(photo).subscribe((data:Photo) => {
+          this.photos = this.photos.filter(item => item.id != photo.id);
+        });
+        Swal.fire('Eliminada!', 'La foto ha sido eliminada', 'success');
+      }
+    })
   }
 
 }

@@ -1,12 +1,12 @@
-<h2 mat-dialog-title>Titulo: {{album.title}}</h2>
+<h2 mat-dialog-title>Titulo: {{album?.title}}</h2>
 <mat-dialog-content class="mat-typography">
-  <h3>User ID: {{album.userId}}</h3>
-  <h3>Album ID: {{album.id}}</h3>
+  <h3>User ID: {{album?.userId}}</h3>
+  <h3>Album ID: {{album?.id}}</h3>
 </mat-dialog-content>
 <div class="comments" *ngIf="showUser">
   <h2>Usuario</h2>
   <mat-card>
-    <h1>{{user.name}}</h1>
+    <h1>{{user?.name}}</h1>
     <h2>Sitio web: {{user?.website}}</h2>
       <h2>Empresa: {{user?.company?.name}}</h2>
       <h2>{{user?.company?.catchPhrase}}</h2>

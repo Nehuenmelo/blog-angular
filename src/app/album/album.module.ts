@@ -10,6 +10,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import Swal from 'sweetalert2'
 
 import { AlbumRoutingModule } from './album-routing.module';
 import { ListAlbumsComponent } from './components/list-albums/list-albums.component';
@@ -44,7 +45,7 @@ const material = [
     AlbumRoutingModule,
     material,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ]
 })
 export class AlbumModule { }

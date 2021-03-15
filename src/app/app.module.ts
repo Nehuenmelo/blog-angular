@@ -34,7 +34,7 @@ const material = [
     PostModule,
     AlbumModule,
     TodoModule,
-    material
+    material,
   ],
   providers: [],
   bootstrap: [AppComponent]

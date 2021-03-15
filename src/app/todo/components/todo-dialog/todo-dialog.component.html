@@ -1,8 +1,9 @@
-<h1>{{idDialog?.title}}</h1>
+<h1>Titulo: {{idDialog?.title}}</h1>
 <mat-dialog-content class="mat-typography">
   <mat-card>
-    <h2>{{idDialog.id}}</h2>
-    <h2>{{idDialog.completed}}</h2>
+    <h2>ID: {{idDialog.id}}</h2>
+    <h2 *ngIf="idDialog.completed">Estado: Completado</h2>
+    <h2 *ngIf="!idDialog.completed">Estado: No Completado</h2>
   </mat-card>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

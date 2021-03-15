@@ -27,7 +27,6 @@ export class ListAlbumsComponent implements OnInit {
     private route: ActivatedRoute,
   ) { 
     this.response = this.route.snapshot.paramMap.get('id');
-    console.log(this.response);
     this.idUser = this.response;
   }
 

@@ -41,7 +41,6 @@ export class ListPostsComponent implements OnInit {
     public dialog: MatDialog  
   ) { 
     this.response = this.route.snapshot.paramMap.get('id');
-    console.log(this.response);
     this.idPost = this.response;
   }
 
