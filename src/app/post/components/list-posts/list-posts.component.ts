@@ -24,6 +24,11 @@ export class ListPostsComponent implements OnInit {
   public user!: User;
   public posts:Post[] = [];
   public optionSelected: string = '';
+  public showTitleInputFilter: boolean = false;
+  public textInputFilterValue: string = '';
+  public showIdInputFilter: boolean = false;
+  public idInputFilterValue: string = '';
+  public arrayFiltered: Post[] = [];
   filters: Filter[] = [
     {value: 'id', viewValue: 'ID de usuario'},
     {value: 'title', viewValue: 'Titulo'}
@@ -69,9 +74,19 @@ export class ListPostsComponent implements OnInit {
 
   changeFilter(){
     if(this.optionSelected == 'title'){
-      return this.posts.sort((a, b) => a.title.localeCompare(b.title));
+      this.showIdInputFilter = false;
+      this.showTitleInputFilter = true;
+      this.arrayFiltered = this.posts.filter((val) => {
+        return val.title.toLowerCase().indexOf(this.textInputFilterValue) > -1;
+      });
+      return this.arrayFiltered;
     }
-    return this.posts.sort((a, b) => a.id-b.id);
+    this.showTitleInputFilter = false;
+    this.showIdInputFilter = true;
+    this.arrayFiltered = this.posts.filter((val) => {
+      return val.userId == Number(this.idInputFilterValue);
+    });
+    return this.arrayFiltered;
   }
 
 }

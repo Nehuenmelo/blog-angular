@@ -10,6 +10,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
 
 import { TodoRoutingModule } from './todo-routing.module';
 import { ListTodosComponent } from './components/list-todos/list-todos.component';
@@ -23,7 +24,8 @@ const material = [
   MatButtonToggleModule,
   MatDialogModule,
   MatSelectModule,
-  MatCardModule
+  MatCardModule,
+  MatInputModule
 ]
 @NgModule({
   declarations: [ListTodosComponent, TodoDialogComponent],

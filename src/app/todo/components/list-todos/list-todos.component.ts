@@ -25,6 +25,9 @@ export class ListTodosComponent implements OnInit {
   public todos: Todo[] = [];
   public optionSelected: string = '';
   public selectedOptions: Todo[] = [];
+  public showIdInputFilter: boolean = false;
+  public idInputFilterValue: string = '';
+  public arrayFiltered: Todo[] = [];
   filters: Filter[] = [
     {value: 'vof', viewValue: 'Completadas'},
     {value: 'userId', viewValue: 'ID de Usuario'}
@@ -67,8 +70,8 @@ export class ListTodosComponent implements OnInit {
   }
 
   changeFilter(){
-    /* this.todos = this._todoService.getTodosArrayOffline(); */
     if(this.optionSelected == 'vof'){
+      this.showIdInputFilter = false;
       this.selectedOptions = this.todos.filter(item=>item.completed);
       this.todos = this.todos.sort(function(x, y) {
         let a:number;
@@ -77,12 +80,15 @@ export class ListTodosComponent implements OnInit {
         y.completed == true ? b = 1 : b = 0;
         return b-a;
       });
-      console.log(this.todos);
       return this._todoService.setTodosArrayOffline(this.todos);
     }
-    this.todos = this.todos.sort((a, b) => a.userId-b.userId);
-    console.log(this.todos);
-    return this._todoService.setTodosArrayOffline(this.todos);
+    this.showIdInputFilter = true;
+    this.selectedOptions = this.todos.filter(item=>item.completed);
+    this.arrayFiltered = this.todos.filter((val) => {
+      return val.userId == Number(this.idInputFilterValue);
+    });
+    console.log(this.arrayFiltered);
+    return this.arrayFiltered;
   }
 
   openDialog(event:MouseEvent, todo:Todo) {
